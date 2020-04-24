@@ -46,7 +46,29 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset(
+                 'images/camera.png',
+                  fit: BoxFit.contain,
+                  height: 26,
+              ),
+             Container(width: 15,),
+                  Image.asset(
+                 'images/horiz_logo.png',
+                  fit: BoxFit.contain,
+                  height: 43,
+              ),
+              Spacer(flex: 1),
+              Image.asset(
+                 'images/dm.png',
+                  fit: BoxFit.contain,
+                  height: 26,
+              ),
+            ],
+
+          ),
       ),
       body: Container(
         color: Colors.black,
