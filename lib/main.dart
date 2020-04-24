@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutterapp/post/PostActions.dart';
 import 'package:flutterapp/post/PostContainer.dart';
 import 'package:flutterapp/post/PostImage.dart';
@@ -10,6 +11,8 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.black));
     return MaterialApp(
       title: 'Instagram',
       theme: ThemeData(
@@ -35,7 +38,8 @@ class _MyHomePageState extends State<MyHomePage> {
   var post = Post(
       username: 'ozaferayan',
       placeName: 'İstanbul, Türkiye',
-      imgUrl: 'https://images.unsplash.com/photo-1575016794663-110bb4b5400d?w=750&q=80',
+      imgUrl:
+          'https://images.unsplash.com/photo-1575016794663-110bb4b5400d?w=750&q=80',
       likeCount: 103,
       commentCount: 42,
       text:
@@ -45,35 +49,43 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Image.asset(
-                 'images/camera.png',
-                  fit: BoxFit.contain,
-                  height: 26,
-              ),
-             Container(width: 15,),
-                  Image.asset(
-                 'images/horiz_logo.png',
-                  fit: BoxFit.contain,
-                  height: 43,
-              ),
-              Spacer(flex: 1),
-              Image.asset(
-                 'images/dm.png',
-                  fit: BoxFit.contain,
-                  height: 26,
-              ),
-            ],
-
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(46.0), // here the desired height
+          child: AppBar(
+            title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              'images/camera.png',
+              fit: BoxFit.contain,
+              height: 24,
+            ),
+            Container(
+              width: 15,
+            ),
+            Image.asset(
+              'images/horiz_logo.png',
+              fit: BoxFit.contain,
+              height: 37,
+            ),
+            Spacer(flex: 1),
+            Image.asset(
+              'images/dm.png',
+              fit: BoxFit.contain,
+              height: 24,
+            ),
+          ],
+        ),
           ),
+        
       ),
       body: Container(
         color: Colors.black,
         child: ListView(
-          children: <Widget>[PostContainer(post: post),PostContainer(post: post)  ],
+          children: <Widget>[
+            PostContainer(post: post),
+            PostContainer(post: post)
+          ],
         ),
       ),
     );
